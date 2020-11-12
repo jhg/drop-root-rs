@@ -1,0 +1,17 @@
+[package]
+name = "drop-root"
+version = "0.1.0"
+description = "Set a user id and group (using the names) id to drop root privileges"
+authors = ["Jesus Hernandez <jesushdez@protonmail.com>"]
+license = "Unlicense"
+keywords = ["drop-root", "privileges", "security", "service", "daemon"]
+categories = ["development-tools::ffi", "os::unix-apis"]
+edition = "2018"
+readme = "README.md"
+repository = "https://github.com/jhg/drop-root-rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+libc = "^0.2"
+log = "^0.4"
