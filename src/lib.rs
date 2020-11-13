@@ -1,3 +1,5 @@
+#![cfg(unix)]
+
 mod error;
 
 pub use error::DropRootError;
