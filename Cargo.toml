@@ -1,6 +1,6 @@
 [package]
 name = "drop-root"
-version = "0.1.0"
+version = "0.1.1"
 description = "Set a user id and group (using the names) id to drop root privileges"
 authors = ["Jesus Hernandez <jesushdez@protonmail.com>"]
 license = "Unlicense"
