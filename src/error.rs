@@ -7,11 +7,17 @@ use std::io;
 pub enum DropRootError {
     IoError(io::Error),
     NulError(ffi::NulError),
+    InvalidData
 }
 
 impl DropRootError {
     pub fn last_os_error() -> Self {
-        Self::IoError(io::Error::last_os_error())
+        let error = io::Error::last_os_error();
+        if error.raw_os_error().is_none() || error.raw_os_error() == Some(0) {
+            Self::InvalidData
+        } else {
+            Self::IoError(error)
+        }
     }
 
     pub fn invalid_string(error: ffi::NulError) -> Self {
@@ -30,15 +36,13 @@ impl fmt::Display for DropRootError {
         match self {
             Self::IoError(error) => error.fmt(f),
             Self::NulError(_) => write!(f, "Cannot create CString from String"),
+            Self::InvalidData => write!(f,"Bad user or group.")
         }
     }
 }
 
 impl Error for DropRootError {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
-        match self {
-            Self::IoError(error) => Some(error),
-            Self::NulError(error) => Some(error),
-        }
+        Some(self)
     }
 }
