@@ -22,15 +22,21 @@ mod tests {
     #[ignore]
     #[test]
     fn user_and_group_does_not_exist() {
+        assert_eq!(unsafe { libc::getuid() }, 0);
+
         assert_eq!(
             format!("{}", set_user_group("thisusershouldnotexistbecausenoonecallslikethis", "thisgroupshouldnotexistbecausenoonecallslikethis").unwrap_err()),
             "Bad user or group."
         );
+
+        assert_eq!(unsafe { libc::getuid() }, 0);
     }
 
     #[ignore]
     #[test]
     fn change_to_nobody_and_nogroup() {
+        assert_eq!(unsafe { libc::getuid() }, 0);
+
         set_user_group("nobody", "nogroup").unwrap();
         let output = Command::new("id")
             .output()
@@ -45,5 +51,7 @@ mod tests {
             format!("{}", set_user_group("root", "root").unwrap_err()),
             "Operation not permitted (os error 1)"
         );
+
+        assert_ne!(unsafe { libc::getuid() }, 0);
     }
 }
