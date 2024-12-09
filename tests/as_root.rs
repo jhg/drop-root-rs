@@ -28,7 +28,7 @@ fn change_to_nobody_and_nogroup() {
 
     assert_eq!(
         String::from_utf8_lossy(&output.stdout).trim(),
-        String::from("uid=65534(nobody) gid=65534(nogroup) groupes=65534(nogroup)")
+        String::from("uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)")
     );
 
     assert_eq!(
