@@ -39,6 +39,12 @@ impl fmt::Display for DropRootError {
 
 impl Error for DropRootError {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
-        Some(self)
+        match self {
+            Self::IoError(error)
+            | Self::NulError(error)
+            => Some(error),
+
+            Self::InvalidData => None,
+        }
     }
 }
