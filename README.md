@@ -1,6 +1,6 @@
-# drop-root-rs
+# Drop root
 
-Set a user id and group (using the names) id to drop root privileges
+Set a user id and group (using the names) id to drop root privileges.
 
 ## Example
 
@@ -13,3 +13,8 @@ fn main() {
     // ...
 }
 ```
+
+## Testing
+
+It's tested on Linux. Tests that require run as root are ignored by default, and executed
+ one by one.
