@@ -6,7 +6,7 @@ authors = ["Jesus Hernandez <jesushdez@protonmail.com>"]
 license = "Unlicense"
 keywords = ["drop-root", "privileges", "security", "service", "daemon"]
 categories = ["development-tools::ffi", "os::unix-apis"]
-edition = "2018"
+edition = "2021"
 readme = "README.md"
 repository = "https://github.com/jhg/drop-root-rs"
 
