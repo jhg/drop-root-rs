@@ -1,6 +1,6 @@
 #![cfg(unix)]
 
-use drop_root::set_user_group;
+use drop_root::{set_user_group, DropRootError};
 use std::process::Command;
 
 #[ignore]
@@ -9,8 +9,8 @@ fn user_and_group_does_not_exist() {
     assert_eq!(unsafe { libc::getuid() }, 0);
 
     assert_eq!(
-        format!("{}", set_user_group("thisusershouldnotexistbecausenoonecallslikethis", "thisgroupshouldnotexistbecausenoonecallslikethis").unwrap_err()),
-        "Bad user or group."
+        set_user_group("thisusershouldnotexistbecausenoonecallslikethis", "thisgroupshouldnotexistbecausenoonecallslikethis").unwrap_err(),
+        DropRootError::InvalidData
     );
 
     assert_eq!(unsafe { libc::getuid() }, 0);
