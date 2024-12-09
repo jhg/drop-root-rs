@@ -18,5 +18,21 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Build tests
+        run: cargo test --no-run
+
+      - name: Find test executable
+        run: echo "TEST_EXECUTABLE=$(find ./target/debug/deps/ -type f -executable -name 'drop_root-*')" >> $GITHUB_ENV
+
+      - name: Run root-required test user_and_group_does_not_exist
+        run: sudo -E $TEST_EXECUTABLE -- --ignored user_and_group_does_not_exist
+        env:
+          TEST_EXECUTABLE: ${{ env.TEST_EXECUTABLE }}
+
+      - name: Run root-required test change_to_nobody_and_nogroup
+        run: sudo -E $TEST_EXECUTABLE -- --ignored change_to_nobody_and_nogroup
+        env:
+          TEST_EXECUTABLE: ${{ env.TEST_EXECUTABLE }}
+
       - name: Run tests
-        run: cargo test -- --include-ignored
+        run: cargo test
