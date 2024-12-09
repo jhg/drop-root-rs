@@ -13,7 +13,9 @@ pub enum DropRootError {
 impl DropRootError {
     pub(crate) fn last_os_error() -> Self {
         let error = io::Error::last_os_error();
-        if error.raw_os_error().is_none() || error.raw_os_error() == Some(0) {
+        let os_error = error.raw_os_error();
+
+        if os_error.is_none() || os_error == Some(0) {
             Self::InvalidData
         } else {
             Self::IoError(error)
