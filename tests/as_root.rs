@@ -1,3 +1,5 @@
+#![cfg(unix)]
+
 use drop_root::set_user_group;
 use std::process::Command;
 
