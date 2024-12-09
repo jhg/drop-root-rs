@@ -10,11 +10,11 @@ pub enum DropRootError {
 }
 
 impl DropRootError {
-    pub fn last_os_error() -> Self {
+    pub(crate) fn last_os_error() -> Self {
         Self::IoError(io::Error::last_os_error())
     }
 
-    pub fn invalid_string(error: ffi::NulError) -> Self {
+    pub(crate) fn invalid_string(error: ffi::NulError) -> Self {
         Self::NulError(error)
     }
 }
