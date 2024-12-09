@@ -12,9 +12,14 @@ fn get_group_id_of(group_name: &str) -> Result<libc::gid_t, DropRootError> {
 }
 
 /// Set current process group.
-pub fn set_group(group_name: &str) -> Result<(), DropRootError> {
+pub fn set_group<T: AsRef<str>>(group_name: T) -> Result<(), DropRootError> {
+    let group_name = group_name.as_ref();
     let group_id = get_group_id_of(group_name)?;
     if unsafe { libc::setgid(group_id) } != 0 {
+        log::error!("Unable to setgid of group {}", group_name);
+        return Err(DropRootError::last_os_error());
+    }
+    if unsafe { libc::setgroups(1, &group_id) } != 0 {
         log::error!("Unable to setgid of group {}", group_name);
         return Err(DropRootError::last_os_error());
     }

@@ -12,7 +12,8 @@ fn get_user_id_of(user_name: &str) -> Result<libc::gid_t, DropRootError> {
 }
 
 /// Set current process user.
-pub fn set_user(user_name: &str) -> Result<(), DropRootError> {
+pub fn set_user<T: AsRef<str>>(user_name: T) -> Result<(), DropRootError> {
+    let user_name = user_name.as_ref();
     let user_id = get_user_id_of(user_name)?;
     if unsafe { libc::setuid(user_id) } != 0 {
         log::error!("Unable to setuid of user {}", user_name);
