@@ -19,10 +19,6 @@ impl DropRootError {
             Self::IoError(error)
         }
     }
-
-    pub(crate) fn invalid_string(error: ffi::NulError) -> Self {
-        Self::NulError(error)
-    }
 }
 
 impl From<ffi::NulError> for DropRootError {
