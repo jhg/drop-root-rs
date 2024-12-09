@@ -8,10 +8,10 @@ use std::process::Command;
 fn user_and_group_does_not_exist() {
     assert_eq!(unsafe { libc::getuid() }, 0);
 
-    assert_eq!(
+    assert!(matches!(
         set_user_group("thisusershouldnotexistbecausenoonecallslikethis", "thisgroupshouldnotexistbecausenoonecallslikethis").unwrap_err(),
         DropRootError::InvalidData
-    );
+    ));
 
     assert_eq!(unsafe { libc::getuid() }, 0);
 }
