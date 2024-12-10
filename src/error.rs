@@ -23,6 +23,12 @@ impl DropRootError {
     }
 }
 
+impl From<io::Error> for DropRootError {
+    fn from(error: io::Error) -> Self {
+        Self::IoError(error)
+    }
+}
+
 impl From<ffi::NulError> for DropRootError {
     fn from(error: ffi::NulError) -> Self {
         Self::NulError(error)
