@@ -13,7 +13,7 @@ fn get_user_id_of(user_name: &str) -> Result<libc::gid_t, DropRootError> {
     Ok(user_id)
 }
 
-/// Set current process user.
+/// Set user ID.
 pub fn set_user<T: AsRef<str>>(user_name: T) -> Result<(), DropRootError> {
     let user_name = user_name.as_ref();
     let user_id = get_user_id_of(user_name)?;

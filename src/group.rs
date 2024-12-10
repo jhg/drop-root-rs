@@ -13,7 +13,7 @@ fn get_group_id_of(group_name: &str) -> Result<libc::gid_t, DropRootError> {
     Ok(group_id)
 }
 
-/// Set current process group.
+/// Set group ID and supplementary group list.
 pub fn set_group<T: AsRef<str>>(group_name: T) -> Result<(), DropRootError> {
     let group_name = group_name.as_ref();
     let group_id = get_group_id_of(group_name)?;
