@@ -38,5 +38,8 @@ jobs:
       - name: Check without logging feature
         run: cargo check --no-default-features
 
+      - name: Run tests without logging feature
+        run: cargo test --no-default-features -- --show-output
+
       - name: Run clippy
         run: cargo clippy --all-targets -- -D warnings

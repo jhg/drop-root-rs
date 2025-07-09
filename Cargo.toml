@@ -11,7 +11,12 @@ readme = "README.md"
 repository = "https://github.com/jhg/drop-root-rs"
 
 exclude = [
-    ".github",
+    ".github/**",
+    ".vscode/**",
+    ".idea/**",
+    "tests/**",
+    "benches/**",
+    "Cargo.lock",
     ".gitignore",
 ]
 
