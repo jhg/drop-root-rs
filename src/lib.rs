@@ -1,5 +1,6 @@
 #![cfg(unix)]
-#[doc = include_str!("../README.md")]
+#![doc = include_str!("../README.md")]
+
 mod error;
 mod user;
 mod group;
