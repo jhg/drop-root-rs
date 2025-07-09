@@ -7,12 +7,15 @@ Set a user id and group id, using the names, to drop root privileges.
 ```rust
 use drop_root::set_user_group;
 
-fn main() {
-    // ...
-    set_user_group("nobody", "nogroup");
-    // ...
-}
+// ...
+set_user_group("nobody", "nogroup");
+// ...
 ```
+
+## Features
+
+- `logging` (default): Enable logging via the `log` crate
+- To use without logging: `drop-root = { version = "1.0", default-features = false }`
 
 ## Testing
 

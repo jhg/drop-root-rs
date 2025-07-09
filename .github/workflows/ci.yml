@@ -11,12 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+        uses: dtolnay/rust-toolchain@stable
 
       - name: Build tests
         run: cargo test --no-run
@@ -36,3 +34,9 @@ jobs:
 
       - name: Run tests
         run: cargo test -- --show-output
+
+      - name: Check without logging feature
+        run: cargo check --no-default-features
+
+      - name: Run clippy
+        run: cargo clippy --all-targets -- -D warnings
