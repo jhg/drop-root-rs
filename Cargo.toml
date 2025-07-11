@@ -1,6 +1,6 @@
 [package]
 name = "drop-root"
-version = "1.2.1"
+version = "1.2.2"
 description = "Drop root privileges easily"
 authors = ["Jesus Hernandez <jesushdez@protonmail.com>"]
 license = "Unlicense"
@@ -9,7 +9,6 @@ categories = ["development-tools::ffi", "os::unix-apis"]
 edition = "2024"
 readme = "README.md"
 repository = "https://github.com/jhg/drop-root-rs"
-
 exclude = [
     ".github/**",
     ".vscode/**",

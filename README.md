@@ -1,23 +1,19 @@
 # Drop root
 
-Drop root privileges easily.
+Drop root privileges.
 
-## Example
+## Examples
 
 ```rust
 use drop_root::set_user_group;
 
-// ...
 set_user_group("nobody", "nogroup");
-// ...
 ```
 
 ## Features
 
-- `logging` (default): Enable logging via the `log` crate
-- To use without logging: `drop-root = { version = "1.0", default-features = false }`
+- `logging` (default): Enable logging via `log` crate.
 
 ## Testing
 
-It's tested on Linux. Tests that require run as root are ignored by default, and executed
- one by one.
+It's tested on Linux and macOS. Tests that require run as root are ignored by default.
