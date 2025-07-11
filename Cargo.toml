@@ -1,6 +1,6 @@
 [package]
 name = "drop-root"
-version = "1.2.0"
+version = "1.2.1"
 description = "Drop root privileges easily"
 authors = ["Jesus Hernandez <jesushdez@protonmail.com>"]
 license = "Unlicense"
@@ -33,3 +33,4 @@ logging = ["log"]
 lto = true
 strip = true
 opt-level = 3
+codegen-units = 1

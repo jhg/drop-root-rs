@@ -41,7 +41,7 @@ impl fmt::Display for DropRootError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::IoError(error) => error.fmt(f),
-            Self::NulError(_) => write!(f, "Cannot create CString from String"),
+            Self::NulError(_) => write!(f, "Cannot create CString"),
             Self::InvalidData => write!(f, "Bad user or group")
         }
     }
