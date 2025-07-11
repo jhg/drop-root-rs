@@ -1,6 +1,6 @@
 # Drop root
 
-Set a user id and group id, using the names, to drop root privileges.
+Drop root privileges easily.
 
 ## Example
 

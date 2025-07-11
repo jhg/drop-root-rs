@@ -1,7 +1,7 @@
 [package]
 name = "drop-root"
 version = "1.2.0"
-description = "Set a user id and group id (using names) to drop root privileges"
+description = "Drop root privileges easily"
 authors = ["Jesus Hernandez <jesushdez@protonmail.com>"]
 license = "Unlicense"
 keywords = ["unix", "privileges", "security", "service", "daemon"]
@@ -28,3 +28,8 @@ log = { version = "^0.4", optional = true }
 [features]
 default = ["logging"]
 logging = ["log"]
+
+[profile.release]
+lto = true
+strip = true
+opt-level = 3

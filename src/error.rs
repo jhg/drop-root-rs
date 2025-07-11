@@ -24,12 +24,14 @@ impl DropRootError {
 }
 
 impl From<io::Error> for DropRootError {
+    #[inline]
     fn from(error: io::Error) -> Self {
         Self::IoError(error)
     }
 }
 
 impl From<ffi::NulError> for DropRootError {
+    #[inline]
     fn from(error: ffi::NulError) -> Self {
         Self::NulError(error)
     }
@@ -40,7 +42,7 @@ impl fmt::Display for DropRootError {
         match self {
             Self::IoError(error) => error.fmt(f),
             Self::NulError(_) => write!(f, "Cannot create CString from String"),
-            Self::InvalidData => write!(f, "Bad user or group.")
+            Self::InvalidData => write!(f, "Bad user or group")
         }
     }
 }
