@@ -19,7 +19,7 @@ jobs:
       - name: Build tests
         run: cargo test --no-run
       - name: Find test executable
-        run: echo "TEST_EXECUTABLE=$(find ./target/debug/deps/ -type f -executable -name 'as_root-*')" >> $GITHUB_ENV
+        run: echo "TEST_EXECUTABLE=$(find ./target/debug/deps/ -type f -perm +111 -name 'as_root-*')" >> $GITHUB_ENV
       - name: Run root-required test user_and_group_does_not_exist
         run: sudo -E -- "$TEST_EXECUTABLE --show-output --ignored --test user_and_group_does_not_exist"
         env:
