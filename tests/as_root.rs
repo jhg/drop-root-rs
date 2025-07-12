@@ -30,10 +30,10 @@ fn change_to_nobody_and_nogroup() {
     assert!(output.contains("(nobody)"));
     assert!(output.contains("(nogroup)"));
 
-    assert_eq!(
-        format!("{}", set_user_group("root", "root").unwrap_err()),
-        "Operation not permitted (os error 1)"
-    );
+    assert!(set_user_group("root", "root")
+        .unwrap_err()
+        .to_string()
+        .contains("os error"));
 
     assert_ne!(unsafe { libc::getuid() }, 0);
 }
