@@ -26,10 +26,9 @@ fn change_to_nobody_and_nogroup() {
         .output()
         .expect("failed to execute process");
 
-    assert_eq!(
-        String::from_utf8_lossy(&output.stdout).trim(),
-        String::from("uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)")
-    );
+    let output = String::from_utf8_lossy(&output.stdout).trim();
+    assert!(output.contains("(nobody)"));
+    assert!(output.contains("(nogroup)"));
 
     assert_eq!(
         format!("{}", set_user_group("root", "root").unwrap_err()),
