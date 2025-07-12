@@ -26,7 +26,7 @@ fn change_to_nobody_and_nogroup() {
         .output()
         .expect("failed to execute process");
 
-    let output = String::from_utf8_lossy(&output.stdout).trim();
+    let output = String::from_utf8_lossy(&output.stdout);
     assert!(output.contains("(nobody)"));
     assert!(output.contains("(nogroup)"));
 
